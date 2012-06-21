@@ -2,7 +2,7 @@
 #define TERRAIN_H
 
 #include "../include/GameObject.h"
-#include "../include/chipmunk/chipmunk.h"
+//#include "../include/chipmunk/chipmunk.h"
 
 class Terrain : public GameObject
 {
@@ -12,8 +12,10 @@ class Terrain : public GameObject
         virtual void render()=0;
     protected:
     private:
+/*
         cpBody body;
         cpShape shape;
+*/
 };
 
 #endif // TERRAIN_H

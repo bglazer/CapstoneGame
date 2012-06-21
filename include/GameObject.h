@@ -1,5 +1,3 @@
-#include "chipmunk/chipmunk.h"
-#include "SDL/SDL.h"
 
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
