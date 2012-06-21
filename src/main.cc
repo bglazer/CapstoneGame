@@ -1,6 +1,5 @@
-#include "../include/SFML/SFML_Window.h"
+#include "../include/SFML/Window/Window.hpp"
 #include "../include/Player.h"
-#include "../include/Timer.h"
 #include "../include/Block.h"
 #include "../include/StaticBlock.h"
 #include "../include/ImageLoader.h"
@@ -17,8 +16,9 @@ const int FRAMES_PER_SECOND = 60;
 Player *player;
 Block *block;
 StaticBlock *ground;
-Timer fps;
-cpSpace* space;
+sf::Window *App;
+//Timer fps;
+//cpSpace* space;
 
 bool quit = false;
 
@@ -42,8 +42,7 @@ int main( int argc, char* argv[] )
 
 bool initialize()
 {
-	sf::Window App(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP), "SFML Window");
-	
+	App = new sf::Window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP), "SFML Window");
 }
 
 void update()
@@ -52,5 +51,5 @@ void update()
 
 void draw()
 {
-	App.Display();
+	App->Display();
 }

@@ -1,9 +1,12 @@
+/*
 #include "../include/SDL/SDL.h"
 #include "../include/SDL/SDL_image.h"
 #include "../include/ImageLoader.h"
+*/
 #include <string>
 #include <iostream>
 
+/*
 SDL_Surface* ImageLoader::load_image( std::string filename )
 {
     //The image that's loaded
@@ -39,3 +42,4 @@ SDL_Surface* ImageLoader::load_image( std::string filename )
     //Return the optimized surface
     return optimizedImage;
 }
+*/

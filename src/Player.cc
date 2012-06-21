@@ -1,12 +1,13 @@
 #include "../include/Player.h"
 #include "../include/ImageLoader.h"
-#include "../include/SDL/SDL.h"
-#include "../include/SDL/SDL_image.h"
-#include "../include/chipmunk/chipmunk.h"
+//#include "../include/SDL/SDL.h"
+//#include "../include/SDL/SDL_image.h"
+//#include "../include/chipmunk/chipmunk.h"
 #include <iostream>
 
-Player::Player(cpSpace *space, SDL_Surface *screen, cpVect pos)
+Player::Player(/*cpSpace *space, SDL_Surface *screen, cpVect pos*/)
 {
+/*
     this->screen = screen;
     this->pos = pos;
     this->space = space;
@@ -19,10 +20,12 @@ Player::Player(cpSpace *space, SDL_Surface *screen, cpVect pos)
     
     ImageLoader* il = new ImageLoader();
     sprite = il->load_image("../resources/dot.bmp");
+*/
 }
 
-void Player::handle_input( SDL_Event *event )
+void Player::handle_input(/* SDL_Event *event */)
 {
+/* 
     if( event->type == SDL_KEYDOWN )
     {
         //Adjust the velocity
@@ -35,12 +38,15 @@ void Player::handle_input( SDL_Event *event )
             default: ;
         }
     }
+*/
 }
 
-void Player::move(cpFloat x, cpFloat y)
+void Player::move(/*cpFloat x, cpFloat y*/)
 {
+/*
     pos.x = x;
     pos.y = y;
+*/
 }
 
 int Player::get_x()
@@ -63,19 +69,24 @@ void Player::set_y(int new_y)
 
 void Player::render()
 {
+/*
     apply_surface( pos.x, pos.y, sprite, screen, NULL );
+*/
 }
 
 void Player::update()
 {
+/*
     cpVect pos = cpBodyGetPos(body);
     cpVect vel = cpBodyGetVel(body);
 
     move(pos.x,pos.y);
+*/
 }
 
-void Player::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL )
+void Player::apply_surface(/* int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip = NULL */)
 {
+/*
     //Holds offsets
     SDL_Rect offset;
 
@@ -85,4 +96,5 @@ void Player::apply_surface( int x, int y, SDL_Surface* source, SDL_Surface* dest
 
     //Blit
     SDL_BlitSurface( source, clip, destination, &offset );
+*/
 }
