@@ -4,6 +4,7 @@
 #include "../include/StaticBlock.h"
 #include "../include/ImageLoader.h"
 #include <string>
+#include <iostream>
 
 //Screen attributes
 const int SCREEN_WIDTH = 640;
@@ -47,6 +48,29 @@ bool initialize()
 
 void update()
 {
+    const sf::Input& Input = App->GetInput();
+
+	sf::Event event;
+    bool LeftKeyPress = Input.IsKeyDown(sf::Key::Left);
+    bool RightKeyPress = Input.IsKeyDown(sf::Key::Right);
+    bool UpKeyPress = Input.IsKeyDown(sf::Key::Up);
+    bool DownKeyPress = Input.IsKeyDown(sf::Key::Down);
+    unsigned int MouseX;
+    unsigned int MouseY;
+
+
+	while( App->GetEvent(event) )
+	{
+        if( event.Type == sf::Event::Closed )
+            quit = true;
+
+        if( (event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Escape))
+            quit = true;
+
+        if( LeftKeyPress )
+            std::cout << "Left Key\n";
+    }
+
 }
 
 void draw()
