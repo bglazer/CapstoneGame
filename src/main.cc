@@ -14,12 +14,11 @@ const int SCREEN_BPP = 32;
 //The frame rate
 const int FRAMES_PER_SECOND = 60;
 
-Player *player;
-Block *block;
-StaticBlock *ground;
-sf::Window *App;
-//Timer fps;
-//cpSpace* space;
+Player player;
+Block block;
+StaticBlock ground;
+sf::Window *app;
+sf::Clock gameClock;
 
 bool quit = false;
 
@@ -43,23 +42,25 @@ int main( int argc, char* argv[] )
 
 bool initialize()
 {
-	App = new sf::Window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP), "SFML Window");
+	app =  new sf::Window( sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP), "SFML Window" );
 }
 
 void update()
 {
-    const sf::Input& Input = App->GetInput();
+    const sf::Input& Input = app->GetInput();
 
 	sf::Event event;
-    bool LeftKeyPress = Input.IsKeyDown(sf::Key::Left);
-    bool RightKeyPress = Input.IsKeyDown(sf::Key::Right);
-    bool UpKeyPress = Input.IsKeyDown(sf::Key::Up);
-    bool DownKeyPress = Input.IsKeyDown(sf::Key::Down);
+    bool leftKeyPress = Input.IsKeyDown(sf::Key::Left);
+    bool rightKeyPress = Input.IsKeyDown(sf::Key::Right);
+    bool upKeyPress = Input.IsKeyDown(sf::Key::Up);
+    bool downKeyPress = Input.IsKeyDown(sf::Key::Down);
     unsigned int MouseX;
     unsigned int MouseY;
 
-
-	while( App->GetEvent(event) )
+    float ElapsedTime = gameClock.GetElapsedTime();
+    gameClock.Reset();
+   
+	while( app->GetEvent(event) )
 	{
         if( event.Type == sf::Event::Closed )
             quit = true;
@@ -67,13 +68,13 @@ void update()
         if( (event.Type == sf::Event::KeyPressed) && (event.Key.Code == sf::Key::Escape))
             quit = true;
 
-        if( LeftKeyPress )
-            std::cout << "Left Key\n";
+        if( leftKeyPress )
+            std::cout << "left Key\n";
     }
 
 }
 
 void draw()
 {
-	App->Display();
+	app->Display();
 }
