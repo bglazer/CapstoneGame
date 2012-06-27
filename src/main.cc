@@ -14,9 +14,6 @@ const int SCREEN_BPP = 32;
 //The frame rate
 const int FRAMES_PER_SECOND = 60;
 
-Player player;
-Block block;
-StaticBlock ground;
 sf::Window *app;
 sf::Clock gameClock;
 
@@ -25,6 +22,7 @@ bool quit = false;
 bool initialize();
 void update();
 void draw();
+void cleanup();
 
 int main( int argc, char* argv[] )
 {
@@ -35,6 +33,8 @@ int main( int argc, char* argv[] )
             update();
             draw();
         }
+
+        cleanup();
     }
     
     return 1;
@@ -77,4 +77,9 @@ void update()
 void draw()
 {
 	app->Display();
+}
+
+void cleanup()
+{
+    delete app;
 }
