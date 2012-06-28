@@ -1,4 +1,5 @@
 #include "../include/SFML/Window/Window.hpp"
+#include "../include/SFML/Graphics.hpp"
 #include "../include/Player.h"
 #include "../include/Block.h"
 #include "../include/StaticBlock.h"
@@ -69,9 +70,11 @@ void update()
             quit = true;
 
         if( leftKeyPress )
-            std::cout << "left Key\n";
+            std::cout << "Left Key\n";
     }
+    
 
+    //Player->update
 }
 
 void draw()
