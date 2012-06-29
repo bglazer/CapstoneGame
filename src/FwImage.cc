@@ -1,11 +1,8 @@
 #include "../include/FwImage.h"
 #include <iostream>
 
-FwImage::FwImage(std::string filename)
+FwImage::FwImage(std::string filename) : name(filename)
 {
-    sf::Image img;
-    
-    name = filename;
 
     if( !img.LoadFromFile(filename) )
     {
@@ -13,7 +10,7 @@ FwImage::FwImage(std::string filename)
     }
 }
 
-std::string FwImage::getName()
+const std::string& FwImage::getName() const
 {
-   return name; 
+   return FwImage::name; 
 }
