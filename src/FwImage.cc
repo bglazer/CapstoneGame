@@ -3,7 +3,6 @@
 
 FwImage::FwImage(std::string filename) : name(filename)
 {
-
     if( !img.LoadFromFile(filename) )
     {
         std::cout<<"Image: " << filename << " failed to load." << std::endl;
@@ -12,5 +11,10 @@ FwImage::FwImage(std::string filename) : name(filename)
 
 const std::string& FwImage::getName() const
 {
-   return FwImage::name; 
+    return FwImage::name; 
+}
+
+sf::Image& FwImage::getImage() 
+{
+    return FwImage::img;
 }
