@@ -17,6 +17,8 @@ const int FRAMES_PER_SECOND = 60;
 
 sf::Window *app;
 sf::Clock gameClock;
+ImageLoader* img_loader;
+std::vector<sf::Image>* imgs;
 
 bool quit = false;
 
@@ -44,6 +46,12 @@ int main( int argc, char* argv[] )
 bool initialize()
 {
 	app =  new sf::Window( sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP), "SFML Window" );
+    img_loader = new ImageLoader();
+    
+    img_flyweight* block_fw = img_loader->load_image( "./resources/block.png" ); 
+    FwImage block_fwimg = block_fw->get();
+    sf::Image& block_img = block_fwimg.getImage();
+    //imgs-> 
 }
 
 void update()
@@ -84,5 +92,7 @@ void draw()
 
 void cleanup()
 {
+    delete img_loader;
+    delete imgs;
     delete app;
 }
