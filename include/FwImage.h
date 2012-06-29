@@ -9,6 +9,7 @@ class FwImage
     public:
         FwImage(std::string filename);
         const std::string& getName() const;
+        sf::Image& getImage();
 
     private:
         const std::string& name;
