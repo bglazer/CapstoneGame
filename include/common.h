@@ -17,7 +17,7 @@ struct img_filename_extractor
 
 typedef boost::flyweight< boost::flyweights::key_value<
                             std::string,
-                            sf::Image,
+                            FwImage,
                             img_filename_extractor>
                         > img_flyweight;
 

@@ -8,5 +8,6 @@
 
 img_flyweight* ImageLoader::load_image( std::string filename )
 {
-//    img_fw = new img_flyweight(  
+    img_flyweight* img_fw = new img_flyweight( filename );
+    return img_fw;
 }
