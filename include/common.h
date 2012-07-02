@@ -21,4 +21,6 @@ typedef boost::flyweight< boost::flyweights::key_value<
                             img_filename_extractor>
                         > img_flyweight;
 
+static const float32 PX_PER_METER = 75.0f;
+
 #endif                        
