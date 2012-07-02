@@ -84,13 +84,13 @@ void update()
             quit = true;
 
         if( leftKeyPress )
-            sprites->at(0)->Move(0,-10);
-        if( rightKeyPress )
-            sprites->at(0)->Move(0,10);
-        if( upKeyPress )
-            sprites->at(0)->Move(10,0);
-        if( downKeyPress )
             sprites->at(0)->Move(-10,0);
+        if( rightKeyPress )
+            sprites->at(0)->Move(10,0);
+        if( upKeyPress )
+            sprites->at(0)->Move(0,-10);
+        if( downKeyPress )
+            sprites->at(0)->Move(0,10);
     }
     
 
