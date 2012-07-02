@@ -16,7 +16,7 @@ source = $(wildcard ${src}/*.cc)
 objects = $(patsubst src/%.cc, obj/%.o, $(source))
 
 Mailman : ${objects}
-	${CXX} ${objects} -o ${bin}/Mailman.exe -L${lib} ${LDFLAGS} ${LDLIBS}
+	${CXX} ${objects} -o ${bin}/Mailman -L${lib} ${LDFLAGS} ${LDLIBS}
 
 ${obj}/%.o : ${src}/%.cc
 	${CXX} $^ -c -g -o $@ 
@@ -24,4 +24,4 @@ ${obj}/%.o : ${src}/%.cc
 .PHONY: clean
 	
 clean :
-	rm ${bin}/Cyborg.exe ${objects}
+	rm -i ${bin}/Mailman ${objects}
