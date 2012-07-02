@@ -9,8 +9,10 @@
 #include <iostream>
 
 //Screen attributes
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const float32 SCREEN_WIDTH_MKS = 10.0f;
+const float32 SCREEN_HEIGHT_MKS = 10.0f;
+const int SCREEN_WIDTH_PX = SCREEN_WIDTH_MKS * PX_PER_METER;
+const int SCREEN_HEIGHT_PX = SCREEN_HEIGHT_MKS * PX_PER_METER;
 const int SCREEN_BPP = 32;
 
 //The frame rate
@@ -54,16 +56,21 @@ int main( int argc, char* argv[] )
 
 bool initialize()
 {
-	app =  new sf::RenderWindow( sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP), "SFML Window" );
+	app =  new sf::RenderWindow( sf::VideoMode(SCREEN_WIDTH_PX, SCREEN_HEIGHT_PX, SCREEN_BPP), "SFML Window" );
     img_loader = new ImageLoader();
     imgs = new std::vector<sf::Image*>();
     sprites = new std::vector<sf::Sprite*>();
 
-    gravity = new b2Vec2(0.0f, -10.0f);
+    gravity = new b2Vec2(0.0f, 1.0f);
     world = new b2World(*gravity);
+
     groundBodyDef = new b2BodyDef();
-    groundBodyDef->position.Set(0.0f, -10.0f);
+    groundBodyDef->position.Set(0.0f, 10.0f);
     groundBody = world->CreateBody(groundBodyDef);
+    b2PolygonShape groundBox;
+    groundBox.SetAsBox(50.0f, 1.0f);
+    groundBody->CreateFixture(&groundBox, 0.0f);
+
     dynamicBodyDef = new b2BodyDef();
     dynamicBodyDef->type = b2_dynamicBody;
     dynamicBodyDef->position.Set(0.0f, 4.0f);
@@ -105,7 +112,12 @@ void update()
     world->Step(1.0f/FRAMES_PER_SECOND, 6, 2);
 
     b2Vec2 position = dynamicBody->GetPosition();
+    b2Vec2 velocity = dynamicBody->GetLinearVelocity();
     float32 angle = dynamicBody->GetAngle();
+
+    //std::cout<< "x: " << position.x << " y: " << position.y << std::endl;
+
+    sprites->at(0)->Move(velocity.x, velocity.y);
 
 	while( app->GetEvent(event) )
 	{
