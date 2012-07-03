@@ -1,5 +1,6 @@
 #include <boost/flyweight.hpp>
 #include <boost/flyweight/key_value.hpp>
+#include "b2Settings.h"
 #include "FwImage.h"
 
 /* Header file that contains typedefs and forward declarations common to most files */
