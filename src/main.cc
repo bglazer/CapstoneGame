@@ -18,19 +18,15 @@ const int SCREEN_BPP = 32;
 //The frame rate
 const int FRAMES_PER_SECOND = 60;
 
+ImageLoader *img_loader;
 sf::RenderWindow *app;
 sf::Clock gameClock;
-ImageLoader* img_loader;
-std::vector<const sf::Image*>* imgs;
-std::vector<sf::Sprite*>* sprites;
 b2Vec2* gravity;
 b2World* world;
-b2BodyDef *groundBodyDef, *dynamicBodyDef;
-b2Body *groundBody, *dynamicBody;
+b2BodyDef *groundBodyDef;
+b2Body *groundBody;
 
-const FwImage* block_fwimg;
-const sf::Image* block_img;
-sf::Sprite* block_sprite;
+Block *block;
 
 bool quit = false;
 
@@ -63,12 +59,11 @@ bool initialize()
 	app =  new sf::RenderWindow( sf::VideoMode(SCREEN_WIDTH_PX, SCREEN_HEIGHT_PX, SCREEN_BPP), "SFML Window" );
     img_loader = new ImageLoader();
 
-    imgs = new std::vector<const sf::Image*>();
-    sprites = new std::vector<sf::Sprite*>();
-
     gravity = new b2Vec2(0.0f, 1.0f);
     world = new b2World(*gravity);
 
+    block = new Block(new b2Vec2(1,-1), 3.14, world, app, img_loader, "./resources/block.png");
+    
     //Ground Body Def
     groundBodyDef = new b2BodyDef();
     groundBodyDef->position.Set(0.0f, 10.0f);
@@ -78,10 +73,6 @@ bool initialize()
     b2PolygonShape groundBox;
     groundBox.SetAsBox(50.0f, 1.0f);
     groundBody->CreateFixture(&groundBox, 0.0f);
-
-    imgs->push_back(block_img);
-
-    sprites->push_back(block_sprite);
 
     return 1;
 }
@@ -104,6 +95,8 @@ void update()
    
     world->Step(1.0f/FRAMES_PER_SECOND, 6, 2);
 
+    block->update();
+
 	while( app->GetEvent(event) )
 	{
         if( event.Type == sf::Event::Closed )
@@ -116,24 +109,16 @@ void update()
 
 void draw()
 {
-    std::vector<sf::Sprite*>::iterator it = sprites->begin(); 
-
     app->Clear(sf::Color(255,255,255));
 
-    for( it = sprites->begin(); it < sprites->end(); it++ )
-    {
-        app->Draw( **it );
-    }
+    block->render();
 
 	app->Display();
 }
 
 void cleanup()
 {
-    delete img_loader;
     delete world;
     delete gravity;
-    delete imgs;
-    delete sprites;
     delete app;
 }

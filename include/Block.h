@@ -16,8 +16,7 @@
 class Block : public PhysicalObject
 {
         public:
-            Block(b2Vec2* size, b2Vec2* position, float32 angle, b2World* world, sf::RenderWindow* app);
-            Block(b2Vec2* position, float32 angle, b2World* world, sf::RenderWindow* app, ImageLoader &img_loader, std::string filename);
+            Block(b2Vec2* position, float32 angle, b2World* world, sf::RenderWindow* app, ImageLoader *img_loader, std::string filename);
             void render();
             void update();
         private:
@@ -27,6 +26,7 @@ class Block : public PhysicalObject
             bool using_image;
             const FwImage* block_fwimg;
             const sf::Image* block_img;
+            sf::RenderWindow* app;
 };
 
 #endif 
