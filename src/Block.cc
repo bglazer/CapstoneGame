@@ -25,7 +25,7 @@ Block::Block(b2Vec2* position, float32 angle, b2World* world, sf::RenderWindow* 
 
     //Block Polygon
     b2PolygonShape blockBox;
-    blockBox.SetAsBox(size.x, size.y);
+    blockBox.SetAsBox(size.x/PX_PER_METER, size.y/PX_PER_METER);
 
     //Block Fixture
     b2FixtureDef fixtureDef;
