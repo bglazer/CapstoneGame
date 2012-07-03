@@ -79,33 +79,6 @@ bool initialize()
     groundBox.SetAsBox(50.0f, 1.0f);
     groundBody->CreateFixture(&groundBox, 0.0f);
 
-    //Block Body Def
-    dynamicBodyDef = new b2BodyDef();
-    dynamicBodyDef->type = b2_dynamicBody;
-    dynamicBodyDef->position.Set(0.0f, 4.0f);
-
-    //Block Body
-    dynamicBody = world->CreateBody(dynamicBodyDef);
-    dynamicBody->SetAngularVelocity( 3.14f );
-
-    //Block Polygon
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(1.0f, 1.0f);
-
-    //Block Fixture
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.3f;
-    dynamicBody->CreateFixture(&fixtureDef);
-
-    img_flyweight* block_fw = img_loader->load_image( "./resources/block.png" ); 
-    block_fwimg = &block_fw->get();
-    block_img = &block_fwimg->getImage();
-
-    block_sprite = new sf::Sprite(*block_img);
-    block_sprite->SetCenter(0.5f*PX_PER_METER,0.5f*PX_PER_METER);
-
     imgs->push_back(block_img);
 
     sprites->push_back(block_sprite);
@@ -130,16 +103,6 @@ void update()
     gameClock.Reset();
    
     world->Step(1.0f/FRAMES_PER_SECOND, 6, 2);
-
-    b2Vec2 position = dynamicBody->GetPosition();
-    b2Vec2 velocity = dynamicBody->GetLinearVelocity();
-    float32 angle_vel = dynamicBody->GetAngularVelocity();
-    float32 angle = dynamicBody->GetAngle();
-
-    //std::cout<< "x: " << position.x << " y: " << position.y << std::endl;
-
-    sprites->at(0)->Move(velocity.x, velocity.y);
-    sprites->at(0)->SetRotation(-(angle * 180.0f)/3.14f);
 
 	while( app->GetEvent(event) )
 	{
