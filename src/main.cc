@@ -27,6 +27,7 @@ b2BodyDef *groundBodyDef;
 b2Body *groundBody;
 
 Block *block;
+Block *block2;
 
 bool quit = false;
 
@@ -62,7 +63,8 @@ bool initialize()
     gravity = new b2Vec2(0.0f, 1.0f);
     world = new b2World(*gravity);
 
-    block = new Block(new b2Vec2(1,-1), 3.14, world, app, img_loader, "./resources/block.png");
+    block = new Block(new b2Vec2(1.6,-1), 5.14, world, app, img_loader, "./resources/block.png");
+    block2 = new Block(new b2Vec2(1,5), 3.14, world, app, img_loader, "./resources/block.png");
     
     //Ground Body Def
     groundBodyDef = new b2BodyDef();
@@ -71,7 +73,7 @@ bool initialize()
 
     //Ground Polygon
     b2PolygonShape groundBox;
-    groundBox.SetAsBox(50.0f, 1.0f);
+    groundBox.SetAsBox(60.0f, 1.0f);
     groundBody->CreateFixture(&groundBox, 0.0f);
 
     return 1;
@@ -96,6 +98,7 @@ void update()
     world->Step(1.0f/FRAMES_PER_SECOND, 6, 2);
 
     block->update();
+    block2->update();
 
 	while( app->GetEvent(event) )
 	{
@@ -112,6 +115,7 @@ void draw()
     app->Clear(sf::Color(255,255,255));
 
     block->render();
+    block2->render();
 
 	app->Display();
 }
