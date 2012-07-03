@@ -13,20 +13,10 @@
 class Block : public PhysicalObject
 {
         public:
-            Block(/*cpSpace* space, SDL_Surface* screen, cpVect pos, cpFloat mass, int size*/);
+            Block();
             void render();
             void update();
         private:
-/*
-            cpFloat x;
-            cpFloat y;
-            cpFloat width;
-            cpFloat height;
-            cpBody* body;
-            cpShape* shape;
-            SDL_Surface* img, screen;
-*/
 };
 
-#endif	/* BLOCK_H */
-
+#endif 
