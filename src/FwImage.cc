@@ -14,7 +14,7 @@ const std::string& FwImage::getName() const
     return FwImage::name; 
 }
 
-sf::Image& FwImage::getImage() 
+const sf::Image& FwImage::getImage() const 
 {
     return FwImage::img;
 }
