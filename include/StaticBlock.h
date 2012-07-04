@@ -4,28 +4,26 @@
  *
  * Created on February 14, 2012, 6:47 PM
  */
-/*
-#include "../include/GameObject.h"
-#include "../include/chipmunk/chipmunk.h"
-*/
+
+#include "Box2D.h"
+#include "ImageLoader.h"
+#include "SFML/Graphics.hpp"
+
 #ifndef STATICBLOCK_H
 #define	STATICBLOCK_H
 
 class StaticBlock
 {
-        public:
-            StaticBlock(/*cpSpace* space, SDL_Surface* screen, cpVect pos, int size*/);
-            void render();
-        private:
-/*
-            cpFloat x;
-            cpFloat y;
-            cpFloat width;
-            cpFloat height;
-            cpBody* body;
-            cpShape* shape;
-            SDL_Surface* img, screen;
-*/
+    public:
+        StaticBlock(b2Vec2* position, float32 angle, b2World* world, sf::RenderWindow* app, ImageLoader *img_loader, std::string filename);
+        void render();
+    private:
+        b2BodyDef *staticBodyDef;
+        b2Body *staticBody;
+        sf::Sprite *sprite;
+        const FwImage* fwimg;
+        const sf::Image* img;
+        sf::RenderWindow* app;
 };
 
 #endif	/* STATICBLOCK_H */
