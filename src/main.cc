@@ -23,9 +23,8 @@ sf::RenderWindow *app;
 sf::Clock gameClock;
 b2Vec2* gravity;
 b2World* world;
-b2BodyDef *groundBodyDef;
-b2Body *groundBody;
 
+StaticBlock *stat_block;
 Block *block;
 Block *block2;
 
@@ -63,18 +62,10 @@ bool initialize()
     gravity = new b2Vec2(0.0f, 1.0f);
     world = new b2World(*gravity);
 
-    block = new Block(new b2Vec2(1.6,-1), 5.14, world, app, img_loader, "./resources/block.png");
-    block2 = new Block(new b2Vec2(1,5), 3.14, world, app, img_loader, "./resources/block.png");
+    block = new Block(new b2Vec2(5,1), 5.14, world, app, img_loader, "./resources/block.png");
+    block2 = new Block(new b2Vec2(7,1), 3.14, world, app, img_loader, "./resources/block.png");
     
-    //Ground Body Def
-    groundBodyDef = new b2BodyDef();
-    groundBodyDef->position.Set(0.0f, 10.0f);
-    groundBody = world->CreateBody(groundBodyDef);
-
-    //Ground Polygon
-    b2PolygonShape groundBox;
-    groundBox.SetAsBox(60.0f, 1.0f);
-    groundBody->CreateFixture(&groundBox, 0.0f);
+    stat_block = new StaticBlock(new b2Vec2(5, 7), 0, world, app, img_loader, "./resources/ground.png");
 
     return 1;
 }
@@ -116,6 +107,8 @@ void draw()
 
     block->render();
     block2->render();
+
+    stat_block->render();
 
 	app->Display();
 }
