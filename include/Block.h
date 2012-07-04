@@ -23,9 +23,8 @@ class Block : public PhysicalObject
             b2BodyDef *blockBodyDef;
             b2Body *blockBody;
             sf::Sprite *sprite;
-            bool using_image;
-            const FwImage* block_fwimg;
-            const sf::Image* block_img;
+            const FwImage* fwimg;
+            const sf::Image* img;
             sf::RenderWindow* app;
 };
 
