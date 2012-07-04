@@ -5,14 +5,14 @@ Block::Block(b2Vec2* position, float32 angle, b2World* world, sf::RenderWindow* 
     this->app = app;
 
     img_flyweight* block_fw = img_loader->load_image( filename ); 
-    block_fwimg = &block_fw->get();
-    block_img = &block_fwimg->getImage();
+    fwimg = &block_fw->get();
+    img = &fwimg->getImage();
 
-    b2Vec2 size(block_img->GetWidth(), block_img->GetHeight());
+    b2Vec2 size(img->GetWidth(), img->GetHeight());
 
 //    std::cout << size.x << " " << size.y << std::endl;
 
-    sprite = new sf::Sprite(*block_img);
+    sprite = new sf::Sprite(*img);
 
     //Block Body Def
     blockBodyDef = new b2BodyDef();
